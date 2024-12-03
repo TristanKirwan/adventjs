@@ -6,16 +6,14 @@ function organizeInventory(inventory: Inventory): object {
   const organizedInventory = {};
   
   inventory.forEach((item) => {
-    const currentCatInOrganizedInv = organizedInventory[item.category];
-
-    if(!currentCatInOrganizedInv) {
+    if(!organizedInventory[item.category]) {
       organizedInventory[item.category] = {};
     }
-    const currentNameInOrganizedInv = organizedInventory[item.category][item.name];
-    if(!currentNameInOrganizedInv){
+
+    if(!organizedInventory[item.category][item.name]){
       organizedInventory[item.category][item.name] = item.quantity
     } else {
-      organizedInventory[item.category][item.name] = item.quantity + currentCatInOrganizedInv[item.name]
+      organizedInventory[item.category][item.name] = item.quantity + organizedInventory[item.category][item.name]
     }
 
   })
